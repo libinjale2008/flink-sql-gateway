@@ -213,6 +213,15 @@ public class ExecutionContext<ClusterID> {
 	}
 
 	public TableEnvironment getTableEnvironment() {
+		/**
+		 * added by libin 20210226 start
+		 */
+		Configuration configuration = tableEnv.getConfig().getConfiguration();
+		configuration.setBoolean("table.exec.hive.infer-source-parallelism", true);
+		configuration.setInteger("table.exec.hive.infer-source-parallelism.max", 10);
+		/**
+		 * added by libin 20210226 end
+		 */
 		return tableEnv;
 	}
 
